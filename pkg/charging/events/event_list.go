@@ -1,0 +1,13 @@
+package events
+
+// account
+const (
+	ACCOUNT_OPENED = "ACCOUNT_OPENED"
+	ACCOUNT_CLOSED = "ACCOUNT_CLOSED"
+	FUNDS_DEPOSIT  = "FUNDS_DEPOSIT"
+	FUNDS_WITHDRAW = "FUNDS_WITHDRAW"
+)
+
+// order...
+
+// pay...
