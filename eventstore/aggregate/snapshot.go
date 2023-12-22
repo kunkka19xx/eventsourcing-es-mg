@@ -18,7 +18,7 @@ func NewSnapshotFromAggregate(aggregate Aggregate) (*Snapshot, error) {
 	return &Snapshot{
 		ID:      aggregate.GetID(),
 		Type:    aggregate.GetType(),
-		State:   aggregateData,
+		State:   aggregateData, // current state of aggregate
 		Version: int64(aggregate.GetVersion()),
 	}, nil
 }

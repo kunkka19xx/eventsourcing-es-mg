@@ -31,7 +31,7 @@ func NewBaseEvent(aggregate aggregate.Aggregate, eventType string) EventModel {
 	}
 }
 
-func NewRecordedEvent(event *esdb.RecordedEvent) EventModel {
+func NewEventFromRecorded(event *esdb.RecordedEvent) EventModel {
 	return EventModel{
 		ID:          event.EventID.String(),
 		EventType:   event.EventType,
@@ -40,6 +40,15 @@ func NewRecordedEvent(event *esdb.RecordedEvent) EventModel {
 		AggregateID: event.StreamID,
 		Version:     int64(event.EventNumber),
 		Metadata:    event.UserMetadata,
+	}
+}
+
+func (e *EventModel) NewEventStoreData() esdb.EventData {
+	return esdb.EventData{
+		EventType:   e.EventType,
+		ContentType: esdb.JsonContentType, // or esdb.BinaryContentType
+		Data:        e.Data,
+		Metadata:    e.Metadata,
 	}
 }
 
@@ -95,7 +104,7 @@ func (e *EventModel) SetAggregateType(aggregateType aggregate.AggregateType) {
 	e.AggregateType = aggregateType
 }
 
-// GetAggregateId is the Id of the Aggregate that the Event belongs to
+// GetAggregateId is the ID of the corresponding Aggregate
 func (e *EventModel) GetAggregateId() string {
 	return e.AggregateID
 }
@@ -110,12 +119,12 @@ func (e *EventModel) SetVersion(aggregateVersion int64) {
 	e.Version = aggregateVersion
 }
 
-// GetMetadata is app-specific metadata such as request Id, originating user etc.
+// GetMetadata get metadata
 func (e *EventModel) GetMetadata() []byte {
 	return e.Metadata
 }
 
-// SetMetadata add app-specific metadata serialized as json for the Event.
+// SetMetadata set metadata under encoded json format
 func (e *EventModel) SetMetadata(metaData interface{}) error {
 
 	metaDataBytes, err := json.Marshal(metaData)
@@ -127,7 +136,7 @@ func (e *EventModel) SetMetadata(metaData interface{}) error {
 	return nil
 }
 
-// GetJsonMetadata unmarshal app-specific metadata serialized as json for the Event.
+// GetJsonMetadata unmarshal metadata
 func (e *EventModel) GetJsonMetadata(metaData interface{}) error {
 	return json.Unmarshal(e.GetMetadata(), metaData)
 }

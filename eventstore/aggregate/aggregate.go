@@ -10,7 +10,7 @@ type AggregateRoot interface {
 	GetID() string
 	SetID(id string) *AggregateBase
 	GetVersion() int64
-	//ClearUncommittedEvents()
+	ClearChanges()
 	ToSnapshot()
 	SetType(aggregateType AggregateType)
 	GetType() AggregateType
@@ -102,7 +102,7 @@ func (a *AggregateBase) RaiseEvent(event event.EventModel) error {
 	if err := a.when(event); err != nil {
 		return err
 	}
-	
+
 	a.Version++
 	return nil
 }
@@ -117,7 +117,7 @@ func (a *AggregateBase) GetVersion() int64 {
 	return a.Version
 }
 
-// ClearChanges clear AggregateBase uncommitted Event's
+// ClearChanges clear AggregateBase uncommitted Events
 func (a *AggregateBase) ClearChanges() {
 	a.Changes = make([]event.EventModel, 0, config.CHANGES_EVENT_CAPAPACITY)
 }

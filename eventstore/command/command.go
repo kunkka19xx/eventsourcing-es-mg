@@ -1,4 +1,4 @@
-package domain
+package command
 
 type BaseCommand struct {
 	AggregateID string `json:"aggregateId" validate:"required,min=1"`
