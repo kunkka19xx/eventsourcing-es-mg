@@ -1,8 +1,8 @@
 package serializer
 
 import (
-	"eventstore-intro/eventstore/aggregate"
-	"eventstore-intro/eventstore/event"
+	"example.com/main/cmd/eventstore/aggregate"
+	"example.com/main/cmd/eventstore/event"
 )
 
 type Serializer interface {

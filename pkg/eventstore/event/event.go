@@ -2,7 +2,7 @@ package event
 
 import (
 	"encoding/json"
-	"eventstore-intro/eventstore/aggregate"
+	"eventstore-intro/pkg/eventstore/aggregate"
 	"github.com/EventStore/EventStore-Client-Go/esdb"
 	"github.com/google/uuid"
 	"time"
@@ -104,8 +104,8 @@ func (e *EventModel) SetAggregateType(aggregateType aggregate.AggregateType) {
 	e.AggregateType = aggregateType
 }
 
-// GetAggregateId is the ID of the corresponding Aggregate
-func (e *EventModel) GetAggregateId() string {
+// GetAggregateID is the ID of the corresponding Aggregate
+func (e *EventModel) GetAggregateID() string {
 	return e.AggregateID
 }
 

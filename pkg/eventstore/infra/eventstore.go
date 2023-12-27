@@ -1,7 +1,7 @@
 package infra
 
 import (
-	"eventstore-intro/eventstore/config"
+	"eventstore-intro/pkg/eventstore/config"
 	"github.com/EventStore/EventStore-Client-Go/esdb"
 	"os"
 )

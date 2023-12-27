@@ -2,7 +2,7 @@ package infra
 
 import (
 	"context"
-	"eventstore-intro/eventstore/config"
+	"eventstore-intro/pkg/eventstore/config"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"

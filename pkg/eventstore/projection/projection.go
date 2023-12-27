@@ -2,7 +2,7 @@ package projection
 
 import (
 	"context"
-	"eventstore-intro/eventstore/event"
+	"eventstore-intro/pkg/eventstore/event"
 )
 
 type Projection interface {
